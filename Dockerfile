@@ -2,8 +2,11 @@ FROM debian:jessie
 
 MAINTAINER anders@brander.dk
 
-ADD https://agento.org/download/agento_0.0-20151217-2345-a6ef69a_amd64.deb /
-RUN ["dpkg", "-i", "/agento_0.0-20151217-2345-a6ef69a_amd64.deb"]
+COPY agento_0.0-20161108-1411-37b060e_amd64.deb /
+RUN dpkg -i /agento_0.0-20161108-1411-37b060e_amd64.deb \
+    && rm /agento_0.0-20161108-1411-37b060e_amd64.deb
+
+RUN mkdir -p /var/lib/agento/
 
 VOLUME ["/host/proc", "/host/sys"]
 
